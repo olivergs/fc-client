@@ -26,6 +26,7 @@ BuildRequires: python-dbusmock
 
 %if 0%{?fedora} >= 30
 BuildRequires: python3-devel
+BuildRequires: python3-mock
 BuildRequires: python3-gobject
 BuildRequires: python3-dbus
 BuildRequires: python3-dbusmock
@@ -34,6 +35,7 @@ BuildRequires: python3-samba
 
 %if 0%{?with_check}
 BuildRequires: git
+BuildRequires: python3-mock
 BuildRequires: python3-dns
 BuildRequires: python3-ldap
 BuildRequires: python3-dbusmock
