@@ -92,7 +92,7 @@ class FleetCommanderClientDbusService(dbus.service.Object):
         )
 
         # Parent initialization
-        super(FleetCommanderClientDbusService, self).__init__()
+        super().__init__()
 
     def run(self, sessionbus=False):
         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
@@ -122,7 +122,9 @@ class FleetCommanderClientDbusService(dbus.service.Object):
             policy: Unsigned 16 bit integer (as specified in FreeIPA)
         """
 
-        logging.debug("FC Client: SSSD Data received - %s - %s - %s", uid, directory, policy)
+        logging.debug(
+            "FC Client: SSSD Data received - %s - %s - %s", uid, directory, policy
+        )
         # Compile settings
         sc = SettingsCompiler(directory)
         logging.debug("FC Client: Compiling settings")

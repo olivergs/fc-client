@@ -129,7 +129,7 @@ class DconfConfigAdapter(BaseConfigAdapter):
         """
         Compiles dconf database
         """
-        profile_path, keyfile_dir, db_path = self.get_paths_for_uid(uid)
+        keyfile_dir, db_path = self.get_paths_for_uid(uid)[1:]
 
         # Execute dbus service
         cmd = subprocess.Popen(

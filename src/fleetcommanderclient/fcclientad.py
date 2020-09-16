@@ -83,7 +83,7 @@ class FleetCommanderClientADDbusService(dbus.service.Object):
         )
 
         # Parent initialization
-        super(FleetCommanderClientADDbusService, self).__init__()
+        super().__init__()
 
     def run(self, sessionbus=False):
         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
@@ -126,7 +126,9 @@ class FleetCommanderClientADDbusService(dbus.service.Object):
 
         # Cycle through configuration adapters and deploy existing data
         for namespace, adapter in self.adapters.items():
-            logging.debug("FC Client: Deploying configuration for namespace %s", namespace)
+            logging.debug(
+                "FC Client: Deploying configuration for namespace %s", namespace
+            )
             adapter.deploy(uid)
         self.quit()
 

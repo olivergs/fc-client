@@ -27,7 +27,7 @@ import platform
 import logging
 import json
 import shutil
-import optparse # pylint: disable=deprecated-module
+import optparse  # pylint: disable=deprecated-module
 
 import dns.resolver
 
@@ -434,7 +434,7 @@ class FleetCommanderADProfileRetriever:
         for res in resultlist:
             resdata = res[1]
             if resdata:
-                logging.debug("FCADRetriever: Reading profile data: %s",resdata)
+                logging.debug("FCADRetriever: Reading profile data: %s", resdata)
                 profile = self._read_profile_data(resdata)
                 if profile is not None:
                     profiles.append(profile)
