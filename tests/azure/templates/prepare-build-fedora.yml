@@ -12,6 +12,7 @@ steps:
         gettext-devel \
         make \
         rpm-build \
+        git \
 
     printf "Installing FC dev dependencies\n"
     sudo dnf builddep -y \
