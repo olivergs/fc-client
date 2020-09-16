@@ -23,7 +23,6 @@
 # Python imports
 import os
 import sys
-import logging
 
 import dbus
 
