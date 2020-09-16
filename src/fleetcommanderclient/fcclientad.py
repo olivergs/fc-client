@@ -19,21 +19,16 @@
 # Authors: Alberto Ruiz <aruiz@redhat.com>
 #          Oliver Gutiérrez <ogutierrez@redhat.com>
 
-import os
 import logging
-import json
 
 import dbus
 import dbus.service
 import dbus.mainloop.glib
 
-import gi
 from gi.repository import GObject
 
 from fleetcommanderclient.configloader import ConfigLoader
-from fleetcommanderclient import configadapters
 from fleetcommanderclient import adapters
-from fleetcommanderclient.settingscompiler import SettingsCompiler
 
 DBUS_BUS_NAME = "org.freedesktop.FleetCommanderClientAD"
 DBUS_OBJECT_PATH = "/org/freedesktop/FleetCommanderClientAD"
@@ -45,6 +40,8 @@ class FleetCommanderClientADDbusService(dbus.service.Object):
     """
     Fleet commander client d-bus service class
     """
+
+    _loop = None
 
     def __init__(self, configfile="/etc/xdg/fleet-commander-client.conf"):
         """
@@ -125,14 +122,11 @@ class FleetCommanderClientADDbusService(dbus.service.Object):
         # Get peer UID for security
         uid = self.get_peer_uid(dbusmessage.get_sender())
 
-        logging.debug("FC Client: Got peer UID: {}".format(uid))
+        logging.debug("FC Client: Got peer UID: %s", uid)
 
         # Cycle through configuration adapters and deploy existing data
         for namespace, adapter in self.adapters.items():
-            logging.debug(
-                "FC Client: Deploying configuration for namespace {}".format(namespace)
-            )
-
+            logging.debug("FC Client: Deploying configuration for namespace %s", namespace)
             adapter.deploy(uid)
         self.quit()
 

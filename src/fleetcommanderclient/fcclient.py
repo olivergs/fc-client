@@ -19,15 +19,12 @@
 # Authors: Alberto Ruiz <aruiz@redhat.com>
 #          Oliver Gutiérrez <ogutierrez@redhat.com>
 
-import os
 import logging
-import json
 
 import dbus
 import dbus.service
 import dbus.mainloop.glib
 
-import gi
 from gi.repository import GObject
 
 from fleetcommanderclient.configloader import ConfigLoader
@@ -44,6 +41,8 @@ class FleetCommanderClientDbusService(dbus.service.Object):
     """
     Fleet commander client d-bus service class
     """
+
+    _loop = None
 
     def __init__(self, configfile="/etc/xdg/fleet-commander-client.conf"):
         """
@@ -123,15 +122,7 @@ class FleetCommanderClientDbusService(dbus.service.Object):
             policy: Unsigned 16 bit integer (as specified in FreeIPA)
         """
 
-        logging.debug(
-            "FC Client: SSSD Data received - %(u)s - %(d)s - %(p)s"
-            % {
-                "u": uid,
-                "d": directory,
-                "p": policy,
-            }
-        )
-
+        logging.debug("FC Client: SSSD Data received - %s - %s - %s", uid, directory, policy)
         # Compile settings
         sc = SettingsCompiler(directory)
         logging.debug("FC Client: Compiling settings")
@@ -139,10 +130,10 @@ class FleetCommanderClientDbusService(dbus.service.Object):
         # Send data to configuration adapters
         logging.debug("FC Client: Applying settings")
         for namespace in compiled_settings:
-            logging.debug("FC Client: Checking adapters for namespace %s" % namespace)
+            logging.debug("FC Client: Checking adapters for namespace %s", namespace)
             if namespace in self.config_adapters:
                 logging.debug(
-                    "FC Client: Applying settings for namespace %s" % namespace
+                    "FC Client: Applying settings for namespace %s", namespace
                 )
                 self.config_adapters[namespace].bootstrap(uid)
                 data = compiled_settings[namespace]
