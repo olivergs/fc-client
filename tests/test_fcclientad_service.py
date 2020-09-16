@@ -84,9 +84,7 @@ class TestFleetCommanderClientADDbusService(
 
         fcclientad.ConfigLoader = TestConfigLoader
 
-        super(TestFleetCommanderClientADDbusService, self).__init__(
-            configfile="NON_EXISTENT"
-        )
+        super().__init__(configfile="NON_EXISTENT")
 
         # Put all adapters in test mode
         for adapter in self.adapters.values():

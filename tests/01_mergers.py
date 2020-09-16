@@ -235,10 +235,7 @@ class TestGOAMerger(unittest.TestCase):
         self.merger = mergers.GOAMerger()
 
     def test_00_get_key(self):
-        self.assertEqual(
-            self.merger.get_key(self.TEST_SETTINGS_A),
-            None
-        )
+        self.assertEqual(self.merger.get_key(self.TEST_SETTINGS_A), None)
 
     def test_01_merge(self):
         result = self.merger.merge(self.TEST_SETTINGS_A, self.TEST_SETTINGS_B)
