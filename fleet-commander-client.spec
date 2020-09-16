@@ -29,6 +29,20 @@ BuildRequires: python3-devel
 BuildRequires: python3-gobject
 BuildRequires: python3-dbus
 BuildRequires: python3-dbusmock
+BuildRequires: python3-samba
+%endif
+
+%if 0%{?with_check}
+BuildRequires: git
+BuildRequires: python3-dns
+BuildRequires: python3-ldap
+BuildRequires: python3-dbusmock
+BuildRequires: python3-ipalib
+BuildRequires: python3-six
+BuildRequires: python3-samba
+BuildRequires: NetworkManager-libnm
+BuildRequires: json-glib
+BuildRequires: procps
 %endif
 
 Requires: NetworkManager
@@ -48,6 +62,7 @@ Requires: python-ldap
 Requires: python3
 BuildRequires: python3-gobject
 Requires: python3-samba
+Requires: python3-dns
 Requires: python3-ldap
 %endif
 
