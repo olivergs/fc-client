@@ -44,7 +44,7 @@ BuildRequires: python3-six
 BuildRequires: python3-samba
 BuildRequires: NetworkManager-libnm
 BuildRequires: json-glib
-BuildRequires: procps
+BuildRequires: NetworkManager
 %endif
 
 Requires: NetworkManager
