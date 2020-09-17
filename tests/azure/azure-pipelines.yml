@@ -27,11 +27,11 @@ jobs:
     - script: |
         set -e
         make VERBOSE=1 check
-      displayName: Run dist unittests
+      displayName: Run unittests
     - script: |
         set -e
         make VERBOSE=1 distcheck
-      displayName: Run unittests
+      displayName: Run dist unittests
     - template: templates/${{ variables.BUILD_TEMPLATE }}
     - template: templates/publish-build.yml
       parameters:
