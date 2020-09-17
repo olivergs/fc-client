@@ -35,6 +35,7 @@ BuildRequires: python3-samba
 
 %if 0%{?with_check}
 BuildRequires: git
+BuildRequires: dbus
 BuildRequires: python3-mock
 BuildRequires: python3-dns
 BuildRequires: python3-ldap
