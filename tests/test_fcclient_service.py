@@ -32,10 +32,6 @@ sys.path.append(PYTHONPATH)
 # Fleet commander imports
 from fleetcommanderclient import fcclient
 from fleetcommanderclient.configloader import ConfigLoader
-from fleetcommanderclient.configadapters import networkmanager
-
-USER_NAME = "myuser"
-USER_UID = 55555
 
 
 class TestConfigLoader(ConfigLoader):
@@ -50,6 +46,7 @@ class FakeNMConfigAdapter:
     NAMESPACE = "org.freedesktop.NetworkManager"
 
     def bootstrap(self, uid):
+
         pass
 
     def update(self, uid, data):
@@ -57,6 +54,7 @@ class FakeNMConfigAdapter:
 
 
 fcclient.configadapters.NetworkManagerConfigAdapter = FakeNMConfigAdapter
+
 
 class TestFleetCommanderClientDbusService(fcclient.FleetCommanderClientDbusService):
     def __init__(self):
